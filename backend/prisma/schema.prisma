@@ -1,0 +1,30 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Category {
+  id              String     @id @default(uuid())
+  name            String
+  parentCategoryId String?
+  parentCategory  Category?  @relation("CategoryToCategory", fields: [parentCategoryId], references: [id], onDelete: SetNull)
+  childCategories Category[] @relation("CategoryToCategory")
+  products        Product[]  @relation("ProductToCategory")
+  
+  @@map("categories")
+}
+
+model Product {
+  id          String     @id @default(uuid())
+  name        String
+  quantity    Int
+  price       Float
+  imageUrl    String
+  categories  Category[] @relation("ProductToCategory")
+  
+  @@map("products")
+}
