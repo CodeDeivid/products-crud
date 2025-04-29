@@ -2,8 +2,9 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-async function seed() {
-  await prisma.category.deleteMany({});
+export async function seed() {
+  await prisma.category.deleteMany();
+  await prisma.product.deleteMany();
 
   const electronics = await prisma.category.create({
     data: {
