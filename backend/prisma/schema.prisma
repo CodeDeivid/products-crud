@@ -21,9 +21,9 @@ model Category {
 model Product {
   id          String     @id @default(uuid())
   name        String
-  quantity    Int
+  qty         Int
   price       Float
-  imageUrl    String
+  photo       String
   categories  Category[] @relation("ProductToCategory")
   
   @@map("products")
