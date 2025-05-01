@@ -95,7 +95,6 @@ export const ProductForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      // Incluir as categorias selecionadas na submissão
       const productData = {
         ...formData,
         categoryIds: selectedCategoryIds,
